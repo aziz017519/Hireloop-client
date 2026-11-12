@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import { Geist, Geist_Mono, Inter, Instrument_Sans } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -11,6 +11,16 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
+
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-instrument-sans",
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,7 +30,14 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      className={cn(
+        "antialiased",
+        fontMono.variable,
+        "font-sans",
+        geist.variable,
+        inter.variable,
+        instrumentSans.variable
+      )}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>

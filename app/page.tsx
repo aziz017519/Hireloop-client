@@ -1,19 +1,16 @@
-import { Button } from "@/components/ui/button"
+import { SiteNavbar } from "@/components/site-navbar"
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
+    <div className="min-h-svh bg-[#1e1e1e]">
+      <SiteNavbar />
+      <main className="mx-auto max-w-7xl px-4 pt-16 sm:px-6">
+        <h1 className="text-4xl font-bold text-[#ededef]">Browse Jobs</h1>
+        <p className="mt-4 max-w-xl text-lg text-white/60">
+          Page content goes here. The navbar is responsive: the full pill menu
+          shows on desktop, and a slide-over menu on smaller screens.
+        </p>
+      </main>
     </div>
   )
 }
