@@ -11,6 +11,16 @@ export const auth = betterAuth({
   emailAndPassword: { 
     enabled: true, 
   },
+   user: {
+       additionalFields: {
+          role: {
+              type: ["seeker", "recruiter", "admin"],
+              defaultValue: "seeker",
+              input: true, // allow the sign-up form to send the role
+              returned: true,
+            }
+        }
+    },
       socialProviders: {
         google: { 
             clientId: process.env.GOOGLE_CLIENT_ID as string, 

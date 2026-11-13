@@ -17,12 +17,21 @@ export type SignInData = {
   remember: string
 }
 
+export type UserRole = "seeker" | "recruiter" | "admin"
+
 export type SignUpData = {
   name: string
   email: string
   password: string
   confirmPassword: string
+  role: UserRole
 }
+
+const ROLE_OPTIONS: { value: UserRole; label: string }[] = [
+  { value: "seeker", label: "Job Seeker" },
+  { value: "recruiter", label: "Recruiter" },
+  { value: "admin", label: "Admin" },
+]
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -230,6 +239,7 @@ export function SignUpForm({
   )
   const [pending, setPending] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [role, setRole] = useState<UserRole>("seeker")
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -267,6 +277,34 @@ export function SignUpForm({
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
+      <div className="flex flex-col gap-2">
+        <Label className="text-sm text-[#ededef]">I am a…</Label>
+        <input type="hidden" name="role" value={role} />
+        <div
+          role="radiogroup"
+          aria-label="Account type"
+          className="grid grid-cols-3 gap-2"
+        >
+          {ROLE_OPTIONS.map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              role="radio"
+              aria-checked={role === option.value}
+              onClick={() => setRole(option.value)}
+              className={cn(
+                "rounded-lg border px-2 py-2.5 text-sm transition-colors",
+                role === option.value
+                  ? "border-[#5c53fe] bg-[#5c53fe]/10 font-medium text-[#ededef]"
+                  : "border-white/10 bg-[#101010] text-white/60 hover:border-white/25 hover:text-white/80"
+              )}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="flex flex-col gap-2">
         <Label htmlFor="name" className="text-sm text-[#ededef]">
           Full name
