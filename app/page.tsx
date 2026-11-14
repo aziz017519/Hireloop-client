@@ -1,5 +1,6 @@
 import { SiteNavbar } from "@/components/site-navbar"
 import { SiteHero } from "@/components/site-hero"
+import { SiteFooter } from "@/components/site-footer"
 
 export default function Page() {
   return (
@@ -8,6 +9,7 @@ export default function Page() {
       <main>
         <SiteHero />
       </main>
+      <SiteFooter />
     </div>
   )
 }
